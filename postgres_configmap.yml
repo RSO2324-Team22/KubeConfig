@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: default
+data:
+  postgres_server: rso-postgres.postgres.database.azure.com
+  postgres_planning_database: planningservice
+  postgres_members_database: membersservice
+  postgres_attendance_database: attendanceservice
+
+
