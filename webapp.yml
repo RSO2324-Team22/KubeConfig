@@ -19,7 +19,7 @@ spec:
         - name: webapp
           image: "pusti/rso2324-team22-webapp:latest"
           ports:
-            - containerPort: 80
+            - containerPort: 8000
               name:  http
           env:
             - name: MEMBERS_SERVICE_URL
@@ -30,12 +30,6 @@ spec:
               value: "$(ATTENDANCE_SERVICE_SERVICE_HOST):$(ATTENDANCE_SERVICE_SERVICE_PORT)"
             - name: RESOURCE_SERVICE_URL
               value: "$(RESOURCE_SERVICE_SERVICE_HOST):$(RESOURCE_SERVICE_SERVICE_PORT)"
-          startupProbe:
-            httpGet:
-              path: /health/startup
-              port: http
-            initialDelaySeconds: 10
-            periodSeconds: 10
 
 ---
 

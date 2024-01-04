@@ -20,7 +20,7 @@ spec:
         - name: resource-service
           image: "pusti/rso2324-team22-resource-service:latest"
           ports:
-            - containerPort: 80
+            - containerPort: 8080
               name:  http
           env:
             - name: POSTGRES_SERVER

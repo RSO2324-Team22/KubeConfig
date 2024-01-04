@@ -21,8 +21,8 @@ spec:
         - name: members-service
           image: "pusti/rso2324-team22-members-service:latest"
           ports:
-          - containerPort: 80
-            name:  http
+            - containerPort: 8080
+              name:  http
           env:
             - name: POSTGRES_SERVER
               valueFrom:
