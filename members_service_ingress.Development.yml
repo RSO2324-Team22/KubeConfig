@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: members-service-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths: 
+          - path: "/members"
+            pathType: Prefix
+            backend:
+              service:
+                name: members-service
+                port: 
+                  name: http
+            

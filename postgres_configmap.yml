@@ -8,6 +8,6 @@ data:
   postgres_planning_database: planningservice
   postgres_members_database: membersservice
   postgres_attendance_database: attendanceservice
-  postgres_resources_database: resourceservice
+  postgres_resource_database: resourceservice
 
 

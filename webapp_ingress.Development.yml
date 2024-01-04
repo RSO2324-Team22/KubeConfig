@@ -52,11 +52,11 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: webapprouting.kubernetes.azure.com
+  ingressClassName: nginx
   rules:
     - http:
         paths: 
-          - path: ""
+          - path: "/app"
             pathType: Prefix
             backend:
               service:

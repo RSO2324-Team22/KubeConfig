@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: attendance-service-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  rules:
+    - http:
+        paths: 
+          - path: "/attendance"
+            pathType: Prefix
+            backend:
+              service:
+                name: attendance-service
+                port: 
+                  name: http
+            
