@@ -45,21 +45,17 @@ spec:
                   name: postgres-secrets
                   key: postgres_password
             - name: PlanningService__GraphQL__Url
-              value: "$(PLANNING_SERVICE_SERVICE_HOST)/graphql"
-            - name: PlanningService__GraphQL__Port
-              value: "$(PLANNING_SERVICE_SERVICE_PORT)"
+              value: "http://$(PLANNING_SERVICE_SERVICE_HOST):$(PLANNING_SERVICE_SERVICE_PORT)/graphql"
             - name: MembersService__GraphQL__Url
-              value: "$(MEMBERS_SERVICE_SERVICE_HOST)/graphql"
-            - name: MembersService__GraphQL__Port
-              value: "$(MEMBERS_SERVICE_SERVICE_PORT)"
+              value: "http://$(MEMBERS_SERVICE_SERVICE_HOST):$(MEMBERS_SERVICE_SERVICE_PORT)/graphql"
             - name: KAFKA_URL
               value: "$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
-          startupProbe:
-            httpGet:
-              path: /health/startup
-              port: http
-            initialDelaySeconds: 10
-            periodSeconds: 10
+          # startupProbe:
+          #   httpGet:
+          #     path: /health/startup
+          #     port: http
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /health/live

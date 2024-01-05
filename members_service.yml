@@ -46,12 +46,12 @@ spec:
                   key: postgres_password
             - name: KAFKA_URL
               value: "$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
-          startupProbe:
-            httpGet:
-              path: /health/startup
-              port: http
-            initialDelaySeconds: 10
-            periodSeconds: 10
+          # startupProbe:
+          #   httpGet:
+          #     path: /health/startup
+          #     port: http
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 10
 
 ---
 

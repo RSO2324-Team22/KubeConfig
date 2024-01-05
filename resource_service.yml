@@ -51,12 +51,12 @@ spec:
               value: "$(MEMBERS_SERVICE_SERVICE_HOST)/graphql"
             - name: MembersService__GraphQL__Port
               value: "$(MEMBERS_SERVICE_SERVICE_PORT)"
-          startupProbe:
-            httpGet:
-              path: /health/startup
-              port: http
-            initialDelaySeconds: 10
-            periodSeconds: 10
+          # startupProbe:
+          #   httpGet:
+          #     path: /health/startup
+          #     port: http
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 10
 
 ---
 
