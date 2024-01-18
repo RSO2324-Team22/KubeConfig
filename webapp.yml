@@ -23,13 +23,15 @@ spec:
               name:  http
           env:
             - name: MEMBERS_SERVICE_URL
-              value: "$(MEMBERS_SERVICE_SERVICE_HOST):$(MEMBERS_SERVICE_SERVICE_PORT)"
-            - name: PLANNING_SERVICE_URL
-              value: "$(PLANNING_SERVICE_SERVICE_HOST):$(PLANNING_SERVICE_SERVICE_PORT)"
+              value: "http://$(MEMBERS_SERVICE_SERVICE_HOST):$(MEMBERS_SERVICE_SERVICE_PORT)/member"
+            - name: CONCERTS_SERVICE_URL
+              value: "http://$(PLANNING_SERVICE_SERVICE_HOST):$(PLANNING_SERVICE_SERVICE_PORT)/concert"
+            - name: REHEARSALS_SERVICE_URL
+              value: "http://$(PLANNING_SERVICE_SERVICE_HOST):$(PLANNING_SERVICE_SERVICE_PORT)/rehearsal"
             - name: ATTENDANCE_SERVICE_URL
-              value: "$(ATTENDANCE_SERVICE_SERVICE_HOST):$(ATTENDANCE_SERVICE_SERVICE_PORT)"
+              value: "http://$(ATTENDANCE_SERVICE_SERVICE_HOST):$(ATTENDANCE_SERVICE_SERVICE_PORT)/attendance"
             - name: RESOURCE_SERVICE_URL
-              value: "$(RESOURCE_SERVICE_SERVICE_HOST):$(RESOURCE_SERVICE_SERVICE_PORT)"
+              value: "http://$(RESOURCE_SERVICE_SERVICE_HOST):$(RESOURCE_SERVICE_SERVICE_PORT)/resource"
 
 ---
 

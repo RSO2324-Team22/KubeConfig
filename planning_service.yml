@@ -24,28 +24,13 @@ spec:
             - containerPort: 8080
               name:  http
           env:
-            - name: POSTGRES_SERVER
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_server
-            - name: POSTGRES_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_planning_database
-            - name: POSTGRES_USERNAME
+            - name: ConnectionStrings__PlanningDatabase
               valueFrom:
                 secretKeyRef:
                   name: postgres-secrets
-                  key: postgres_username
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secrets
-                  key: postgres_password
+                  key: planning_service_connection_string
             - name: KAFKA_URL
-              value: "$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
+              value: "http://$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
           # startupProbe:
           #   httpGet:
           #     path: /health/startup
@@ -60,7 +45,7 @@ kind: Service
 metadata:
   name: planning-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: planning-service
   ports:

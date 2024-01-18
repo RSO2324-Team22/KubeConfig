@@ -24,26 +24,11 @@ spec:
             - containerPort: 8080
               name:  http
           env:
-            - name: POSTGRES_SERVER
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_server
-            - name: POSTGRES_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_attendance_database
-            - name: POSTGRES_USERNAME
+            - name: ConnectionStrings__AttendanceDatabase
               valueFrom:
                 secretKeyRef:
                   name: postgres-secrets
-                  key: postgres_username
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secrets
-                  key: postgres_password
+                  key: attendance_service_connection_string
             - name: PlanningService__GraphQL__Url
               value: "http://$(PLANNING_SERVICE_SERVICE_HOST):$(PLANNING_SERVICE_SERVICE_PORT)/graphql"
             - name: MembersService__GraphQL__Url
@@ -76,7 +61,7 @@ kind: Service
 metadata:
   name: attendance-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: attendance-service
   ports:
