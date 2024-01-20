@@ -63,7 +63,7 @@ kind: Service
 metadata:
   name: attendance-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: attendance-service
   ports:
