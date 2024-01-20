@@ -33,14 +33,12 @@ spec:
               value: "$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
             - name: SERILOG__WRITETO__0__ARGS__NAME
               value: "Graylog"
-            - name: SERILOG__WRITETO__0__ARGS__PORT
-              value: "$(GRAYLOG_SERVICE_PORT)"
             - name: SERILOG__WRITETO__0__ARGS__HOSTNAMEORADDRESS
               value: "$(GRAYLOG_SERVICE_HOST)"
             - name: SERILOG__WRITETO__0__ARGS__PORT
               value: "$(GRAYLOG_SERVICE_PORT)"
             - name: SERILOG__WRITETO__0__ARGS__TRANSPORTTYPE
-              value: "$(GRAYLOG_SERVICE_PORT)"
+              value: "Udp"
 
 ---
 

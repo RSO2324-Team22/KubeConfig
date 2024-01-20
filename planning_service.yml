@@ -31,6 +31,14 @@ spec:
                   key: planning_service_connection_string
             - name: KAFKA_URL
               value: "$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
+            - name: SERILOG__WRITETO__0__ARGS__NAME
+              value: "Graylog"
+            - name: SERILOG__WRITETO__0__ARGS__HOSTNAMEORADDRESS
+              value: "$(GRAYLOG_SERVICE_HOST)"
+            - name: SERILOG__WRITETO__0__ARGS__PORT
+              value: "$(GRAYLOG_SERVICE_PORT)"
+            - name: SERILOG__WRITETO__0__ARGS__TRANSPORTTYPE
+              value: "Udp"
 
 ---
 
