@@ -30,8 +30,6 @@ spec:
               value: "http://$(PLANNING_SERVICE_SERVICE_HOST):$(PLANNING_SERVICE_SERVICE_PORT)/rehearsal"
             - name: ATTENDANCE_SERVICE_URL
               value: "http://$(ATTENDANCE_SERVICE_SERVICE_HOST):$(ATTENDANCE_SERVICE_SERVICE_PORT)/attendance"
-            - name: RESOURCE_SERVICE_URL
-              value: "http://$(RESOURCE_SERVICE_SERVICE_HOST):$(RESOURCE_SERVICE_SERVICE_PORT)/resource"
 
 ---
 

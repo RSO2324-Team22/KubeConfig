@@ -24,19 +24,13 @@ spec:
             - containerPort: 8080
               name:  http
           env:
-            - name: ConnectionStrings__PlanningDatabase
+            - name: CONNECTIONSTRINGS__PLANNINGDATABASE
               valueFrom:
                 secretKeyRef:
                   name: postgres-secrets
                   key: planning_service_connection_string
             - name: KAFKA_URL
-              value: "http://$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
-          # startupProbe:
-          #   httpGet:
-          #     path: /health/startup
-          #     port: http
-          #   initialDelaySeconds: 10
-          #   periodSeconds: 10
+              value: "$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
 
 ---
 

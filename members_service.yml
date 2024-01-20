@@ -24,23 +24,23 @@ spec:
             - containerPort: 8080
               name:  http
           env:
-            - name: ConnectionStrings__MembersDatabase
+            - name: CONNECTIONSTRINGS__MEMBERSDATABASE
               valueFrom:
                 secretKeyRef:
                   name: postgres-secrets
                   key: members_service_connection_string
             - name: KAFKA_URL
-              value: "http://$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
-            - name: SERILOG__WRITETO__ARGS_HOSTNAMEORADDRESS
-              value: "$(GRAYLOG_SERVICE_HOST)"
-            - name: SERILOG__WRITETO__ARGS_PORT
+              value: "$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
+            - name: SERILOG__WRITETO__0__ARGS__NAME
+              value: "Graylog"
+            - name: SERILOG__WRITETO__0__ARGS__PORT
               value: "$(GRAYLOG_SERVICE_PORT)"
-          # startupProbe:
-          #   httpGet:
-          #     path: /health/startup
-          #     port: http
-          #   initialDelaySeconds: 10
-          #   periodSeconds: 10
+            - name: SERILOG__WRITETO__0__ARGS__HOSTNAMEORADDRESS
+              value: "$(GRAYLOG_SERVICE_HOST)"
+            - name: SERILOG__WRITETO__0__ARGS__PORT
+              value: "$(GRAYLOG_SERVICE_PORT)"
+            - name: SERILOG__WRITETO__0__ARGS__TRANSPORTTYPE
+              value: "$(GRAYLOG_SERVICE_PORT)"
 
 ---
 

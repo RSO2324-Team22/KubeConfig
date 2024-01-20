@@ -24,34 +24,38 @@ spec:
             - containerPort: 8080
               name:  http
           env:
-            - name: ConnectionStrings__AttendanceDatabase
+            - name: CONNECTIONSTRINGS__ATTENDANCEDATABASE
               valueFrom:
                 secretKeyRef:
                   name: postgres-secrets
                   key: attendance_service_connection_string
-            - name: PlanningService__GraphQL__Url
+            - name: PLANNINGSERVICE__GRAPHQL__URL
               value: "http://$(PLANNING_SERVICE_SERVICE_HOST):$(PLANNING_SERVICE_SERVICE_PORT)/graphql"
-            - name: MembersService__GraphQL__Url
+            - name: MEMBERSSERVICE__GRAPHQL__URL
               value: "http://$(MEMBERS_SERVICE_SERVICE_HOST):$(MEMBERS_SERVICE_SERVICE_PORT)/graphql"
             - name: KAFKA_URL
               value: "$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
-          # startupProbe:
-          #   httpGet:
-          #     path: /health/startup
-          #     port: http
-          #   initialDelaySeconds: 10
-          #   periodSeconds: 10
+            - name: SERILOG__WRITETO__0__ARGS__NAME
+              value: "Graylog"
+            - name: SERILOG__WRITETO__0__ARGS__PORT
+              value: "$(GRAYLOG_SERVICE_PORT)"
+            - name: SERILOG__WRITETO__0__ARGS__HOSTNAMEORADDRESS
+              value: "$(GRAYLOG_SERVICE_HOST)"
+            - name: SERILOG__WRITETO__0__ARGS__PORT
+              value: "$(GRAYLOG_SERVICE_PORT)"
+            - name: SERILOG__WRITETO__0__ARGS__TRANSPORTTYPE
+              value: "$(GRAYLOG_SERVICE_PORT)"
           livenessProbe:
             httpGet:
               path: /health/live
               port: http
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /health/ready
               port: http
-            initialDelaySeconds: 20
+            initialDelaySeconds: 60
             periodSeconds: 10
 
 ---
