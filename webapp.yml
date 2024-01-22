@@ -30,6 +30,12 @@ spec:
               value: "http://$(PLANNING_SERVICE_SERVICE_HOST):$(PLANNING_SERVICE_SERVICE_PORT)/rehearsal"
             - name: ATTENDANCE_SERVICE_URL
               value: "http://$(ATTENDANCE_SERVICE_SERVICE_HOST):$(ATTENDANCE_SERVICE_SERVICE_PORT)/attendance"
+            - name: SERILOG__WRITETO__0__ARGS__HOSTNAMEORADDRESS
+              value: "graylog.monitoring.svc.cluster.local"
+            - name: SERILOG__WRITETO__0__ARGS__PORT
+              value: "12201"
+            - name: SERILOG__WRITETO__0__ARGS__TRANSPORTTYPE
+              value: "Udp"
 
 ---
 
@@ -37,6 +43,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: webapp
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/metrics"
+    prometheus.io/health_path: "/healthmetrics"
+    prometheus.io/port_name: "http"
 spec:
   type: ClusterIP
   selector:

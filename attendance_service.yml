@@ -24,7 +24,7 @@ spec:
             - containerPort: 8080
               name:  http
           env:
-            - name: CONNECTIONSTRINGS__ATTENDANCEDATABASE
+            - name: CONNECTIONSTRINGS__DATABASE
               valueFrom:
                 secretKeyRef:
                   name: postgres-secrets
@@ -38,9 +38,9 @@ spec:
             - name: SERILOG__WRITETO__0__ARGS__NAME
               value: "Graylog"
             - name: SERILOG__WRITETO__0__ARGS__HOSTNAMEORADDRESS
-              value: "$(GRAYLOG_SERVICE_HOST)"
+              value: "graylog.monitoring.svc.cluster.local"
             - name: SERILOG__WRITETO__0__ARGS__PORT
-              value: "$(GRAYLOG_SERVICE_PORT)"
+              value: "12201"
             - name: SERILOG__WRITETO__0__ARGS__TRANSPORTTYPE
               value: "Udp"
           livenessProbe:
@@ -62,6 +62,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: attendance-service
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/metrics"
+    prometheus.io/health_path: "/healthmetrics"
+    prometheus.io/port_name: "http"
 spec:
   type: ClusterIP
   selector:
