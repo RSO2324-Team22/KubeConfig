@@ -24,11 +24,13 @@ spec:
             - containerPort: 8080
               name:  http
           env:
-            - name: CONNECTIONSTRINGS__DATABASE
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: postgres-secrets
-                  key: planning_service_connection_string
+                  key: password
+            - name: CONNECTIONSTRINGS__DATABASE
+              value: "Database=planningservice; Host=$(POSTGRES_SERVICE_HOST); Port=$(POSTGRES_SERVICE_PORT); Username=postgres; Password=$(POSTGRES_PASSWORD);"
             - name: KAFKA_URL
               value: "$(KAFKA_SERVICE_HOST):$(KAFKA_SERVICE_PORT)"
             - name: SERILOG__WRITETO__0__ARGS__NAME

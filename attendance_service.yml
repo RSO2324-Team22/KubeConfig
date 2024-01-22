@@ -24,11 +24,13 @@ spec:
             - containerPort: 8080
               name:  http
           env:
-            - name: CONNECTIONSTRINGS__DATABASE
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: postgres-secrets
-                  key: attendance_service_connection_string
+                  key: password
+            - name: CONNECTIONSTRINGS__DATABASE
+              value: "Database=attendanceservice; Host=$(POSTGRES_SERVICE_HOST); Port=$(POSTGRES_SERVICE_PORT); Username=postgres; Password=$(POSTGRES_PASSWORD);"
             - name: PLANNINGSERVICE__GRAPHQL__URL
               value: "http://$(PLANNING_SERVICE_SERVICE_HOST):$(PLANNING_SERVICE_SERVICE_PORT)/graphql"
             - name: MEMBERSSERVICE__GRAPHQL__URL

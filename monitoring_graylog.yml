@@ -74,7 +74,7 @@ spec:
   volumes:
     - name: opensearch-data
       emptyDir: {}
-    - name: mondogb-data
+    - name: mongodb-data
       emptyDir: {}
 
 ---

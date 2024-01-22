@@ -2,6 +2,7 @@
 
 kubectl apply -f kafka.yml
 kubectl apply -f graylog.yml
+kubectl apply -f postgres.yml
 kubectl apply -f members_service.yml
 kubectl apply -f planning_service.yml
 kubectl apply -f attendance_service.yml

@@ -31,6 +31,16 @@ spec:
           value: "CONTROLLER"
         - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
           value: "PLAINTEXT"
+      volumeMounts:
+        - name: kafka-data
+          mountPath: /bitnami/kafka
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh", "-c", "kafka-topics.sh --create --topic members --partitions 3 --bootstrap-server localhost:9092; kafka-topics.sh --create --topic concerts --partitions 3 --bootstrap-server localhost:9092; kafka-topics.sh --create --topic rehearsals --partitions 3 --bootstrap-server localhost:9092"]
+  volumes:
+    - name: kafka-data
+      emptyDir: {}
 
 ---
 
