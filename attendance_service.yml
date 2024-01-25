@@ -6,7 +6,7 @@ metadata:
   labels:
     app: attendance-service
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: attendance-service
@@ -45,6 +45,8 @@ spec:
               value: "12201"
             - name: SERILOG__WRITETO__0__ARGS__TRANSPORTTYPE
               value: "Udp"
+            - name: APP_BASE
+              value: "/attendance"
           livenessProbe:
             httpGet:
               path: /health/live

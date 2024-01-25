@@ -5,7 +5,7 @@ metadata:
   labels:
     app: webapp
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: webapp
@@ -36,6 +36,8 @@ spec:
               value: "12201"
             - name: SERILOG__WRITETO__0__ARGS__TRANSPORTTYPE
               value: "Udp"
+            - name: APP_BASE
+              value: "/app"
 
 ---
 

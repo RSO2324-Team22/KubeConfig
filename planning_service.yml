@@ -6,7 +6,7 @@ metadata:
   labels:
     app: planning-service
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: planning-service
@@ -41,6 +41,8 @@ spec:
               value: "12201"
             - name: SERILOG__WRITETO__0__ARGS__TRANSPORTTYPE
               value: "Udp"
+            - name: APP_BASE
+              value: "/planning"
 
 ---
 
